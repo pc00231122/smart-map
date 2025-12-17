@@ -24,3 +24,16 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 // 挂载应用
 app.mount('#app')
+
+// 注册Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('ServiceWorker注册成功:', registration.scope)
+      })
+      .catch(error => {
+        console.log('ServiceWorker注册失败:', error)
+      })
+  })
+}
